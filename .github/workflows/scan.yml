@@ -15,11 +15,13 @@ jobs:
       image: semgrep/semgrep
 
     steps:
-      - uses: actions/checkout@v4
+       - name: Checkout source code
+         uses: actions/checkout@v4
 
-      - name: Run Semgrep CI and generate SARIF
-        id: scan
-        run: semgrep ci --sarif --sarif-output=semgrep.sarif
-        env:
-          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+       - name: Run Semgrep CI and generate SARIF
+         id: scan
+         run: semgrep ci --sarif --sarif-output=semgrep.sarif
+         env:
+           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+
 
