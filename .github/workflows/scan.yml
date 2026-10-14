@@ -17,8 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run Semgrep and upload findings
-        run: semgrep ci
+      - name: Run Semgrep SAST scan
+        run: semgrep scan --config auto --error --sarif --output semgrep.sarif .
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
 
