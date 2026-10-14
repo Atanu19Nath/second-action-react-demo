@@ -17,16 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run Semgrep SAST scan
-        run: semgrep scan --config auto --sarif --output semgrep.sarif .
+      - name: Run Semgrep CI and generate SARIF
+        id: scan
+        run: semgrep ci --sarif --sarif-output=semgrep.sarif
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
-
-        continue-on-error: true
-
-      # - name: Run Semgrep CI and generate SARIF
-      #   id: scan
-      #   run: semgrep ci --sarif --sarif-output=semgrep.sarif
-      #   env:
-      #     SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
 
